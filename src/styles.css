@@ -1,230 +1,212 @@
 /* ---------------------------------------------------------------
-   A multi-channel chart recorder. Page chrome stays monochrome;
-   the only colour on the page is the pen each channel writes in.
+   Special Interests — one saturated colour per interest, carried
+   through the title, the spectrum and the card, so each app is
+   recognisable by colour before you read a word.
+
+   Loud on purpose. The structure underneath stays strictly
+   predictable: every card holds the same fields in the same order,
+   nothing moves unless you point at it, and motion is off entirely
+   when the system asks for that.
 ---------------------------------------------------------------- */
 :root {
   color-scheme: light dark;
 
-  --paper:   #F2F4F1;
-  --sheet:   #FBFCFA;
-  --ink:     #13191A;
-  --ink-2:   #3D4749;
-  --muted:   #6C7679;
-  --rule:    #D5DAD5;
-  --rule-2:  #E6EAE5;
-  --grid:    rgba(19, 25, 26, 0.055);
+  --bg:      #FFFCF7;
+  --surface: #FFFFFF;
+  --ink:     #14120E;
+  --ink-2:   #4A463D;
+  --muted:   #7C776B;
+  --rule:    #E8E2D6;
 
-  --pen-blue:   #2F6BA8;
-  --pen-rose:   #A83A67;
-  --pen-violet: #6E52A3;
-  --pen-green:  #3F8046;
-  --pen-teal:   #1F7D80;
-  --pen-amber:  #A8722A;
-  --pen-red:    #B24430;
-
-  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --display: "Bricolage Grotesque", "Archivo", Helvetica, Arial, sans-serif;
+  --body: "Archivo", Helvetica, Arial, sans-serif;
   --mono: "Martian Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --xs: 0.66rem;
-  --sm: 0.875rem;
-  --base: 1rem;
+  --sm: 0.9rem;
+
+  --radius: 18px;
 }
+
+/* Each pen: --solid carries white text, --deep draws on --tint. */
+.pen-blue   { --solid: #1B4FE0; --deep: #1E5BFF; --tint: #E7EDFF; }
+.pen-rose   { --solid: #C2185B; --deep: #E11D74; --tint: #FFE6F1; }
+.pen-violet { --solid: #6D28D9; --deep: #7C3AED; --tint: #F1E9FF; }
+.pen-green  { --solid: #0F7A43; --deep: #12924F; --tint: #DFF7EA; }
+.pen-teal   { --solid: #0A7A8C; --deep: #0891A8; --tint: #DDF5FA; }
+.pen-amber  { --solid: #B45309; --deep: #D97706; --tint: #FFF0DA; }
+.pen-red    { --solid: #C1362A; --deep: #DC3B2A; --tint: #FFE8E3; }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper:  #0E1416;
-    --sheet:  #151D1F;
-    --ink:    #E8EDEB;
-    --ink-2:  #B8C2C0;
-    --muted:  #808C8C;
-    --rule:   #283234;
-    --rule-2: #1D2628;
-    --grid:   rgba(232, 237, 235, 0.05);
-
-    --pen-blue:   #6BA6DC;
-    --pen-rose:   #E37BA5;
-    --pen-violet: #A88FD8;
-    --pen-green:  #6FBE72;
-    --pen-teal:   #4FBFC0;
-    --pen-amber:  #DCA757;
-    --pen-red:    #E5806A;
+    --bg:      #0B0F14;
+    --surface: #121821;
+    --ink:     #F3F0E9;
+    --ink-2:   #C3BDB1;
+    --muted:   #8A8578;
+    --rule:    #232B36;
   }
+  .pen-blue   { --solid: #3E76FF; --deep: #9CBBFF; --tint: #121B33; }
+  .pen-rose   { --solid: #E8347F; --deep: #FF93C1; --tint: #2B1220; }
+  .pen-violet { --solid: #8B5CF6; --deep: #C4ABFF; --tint: #1F1735; }
+  .pen-green  { --solid: #17A65A; --deep: #6EDC9A; --tint: #0F2519; }
+  .pen-teal   { --solid: #0FA8C0; --deep: #5FD5E6; --tint: #0C242A; }
+  .pen-amber  { --solid: #D98B18; --deep: #FFC569; --tint: #2B1D0B; }
+  .pen-red    { --solid: #E0503C; --deep: #FF9585; --tint: #2F1610; }
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--display);
-  font-size: var(--base);
+  font-family: var(--body);
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-.page { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.page { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
 
 .mono {
   font-family: var(--mono);
   font-size: var(--xs);
-  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--muted);
 }
 
 /* ---------- masthead ---------- */
-.masthead { padding: 56px 0 44px; }
+.masthead { padding: 52px 0 40px; }
 
 .rule {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--rule);
 }
 
 h1 {
-  margin: 36px 0 0;
-  font-size: clamp(2.6rem, 7.4vw, 5.1rem);
+  margin: 34px 0 0;
+  font-family: var(--display);
+  font-size: clamp(2.9rem, 9vw, 6.4rem);
   font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.038em;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
-h1 em {
-  font-style: normal;
-  -webkit-text-stroke: 1.4px var(--ink);
-  color: transparent;
-}
+.rainbow span { color: var(--solid); }
 
 .standfirst {
-  margin: 24px 0 0;
-  max-width: 46ch;
-  font-size: 1.06rem;
-  line-height: 1.62;
+  margin: 26px 0 0;
+  max-width: 52ch;
+  font-size: 1.12rem;
+  line-height: 1.6;
   color: var(--ink-2);
 }
 
-/* ---------- the recorder strip ---------- */
-.strip {
-  border: 1px solid var(--rule);
-  background: var(--sheet);
-  background-image:
-    linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: 26px 26px;
-}
-
-.strip-head {
+/* ---------- spectrum ---------- */
+.spectrum {
   display: flex;
+  gap: 6px;
+  height: 150px;
+  margin-top: 8px;
+}
+
+.band {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 9px 14px;
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: var(--xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.channel {
-  display: grid;
-  grid-template-columns: 32px 178px minmax(0, 1fr) 136px;
-  align-items: center;
-  gap: 14px;
-  padding: 7px 14px;
-  border-bottom: 1px solid var(--rule-2);
-  transition: background 0.16s ease;
-}
-.channel:last-child { border-bottom: 0; }
-.channel:hover, .channel.lit { background: color-mix(in srgb, var(--pen) 9%, transparent); }
-
-.ch-no {
-  font-family: var(--mono);
-  font-size: var(--xs);
-  color: var(--muted);
-}
-.ch-name {
-  font-size: var(--sm);
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  white-space: nowrap;
+  padding: 12px 12px 14px;
+  border-radius: var(--radius);
+  background: var(--solid);
+  color: #fff;
   overflow: hidden;
-  text-overflow: ellipsis;
+  transition: flex-grow 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.ch-name i { font-style: normal; font-weight: 400; color: var(--muted); }
-.ch-trace { display: block; min-width: 0; color: var(--pen); }
-.ch-trace .trace { width: 100%; height: 22px; display: block; }
-.ch-measure {
+.band:hover, .band.lit { flex-grow: 2.1; }
+
+.band-no {
   font-family: var(--mono);
   font-size: var(--xs);
-  color: var(--muted);
-  text-align: right;
-  white-space: nowrap;
+  opacity: 0.72;
+}
+.band-trace {
+  position: absolute;
+  inset: 34px 12px auto;
+  color: #fff;
+  opacity: 0.85;
+}
+.band-trace .trace { width: 100%; height: 40px; display: block; }
+.band-name {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 /* ---------- cards ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
-  gap: 1px;
-  margin: 40px 0 0;
+  grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+  gap: 16px;
+  margin: 16px 0 0;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   padding: 22px 22px 20px;
-  background: var(--sheet);
-  /* hairlines via shadow, not a grid background — so an incomplete last
-     row ends on paper instead of a block of gutter colour */
-  box-shadow: 0 0 0 1px var(--rule);
-  transition: background 0.18s ease;
+  border-radius: var(--radius);
+  background: var(--tint);
+  color: var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.card:hover, .card.lit { background: color-mix(in srgb, var(--pen) 7%, var(--sheet)); }
-
-.card.end {
-  justify-content: center;
-  align-items: flex-start;
-  gap: 14px;
-  background: var(--sheet);
+.card:hover, .card.lit {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 -4px var(--solid);
 }
-.card.end:hover { background: color-mix(in srgb, var(--ink) 4%, var(--sheet)); }
-.card.end .card-name { font-size: 1.12rem; font-weight: 600; }
-.card.end p { margin: 0; max-width: 24ch; font-size: var(--sm); color: var(--ink-2); line-height: 1.55; }
 
-.card-trace { display: block; color: var(--pen); }
-.card-trace .trace { width: 100%; height: 44px; display: block; }
-
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
 .card-kicker {
   font-family: var(--mono);
   font-size: var(--xs);
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--pen);
+  color: var(--solid);
 }
+.card-measures {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.card-trace { display: block; color: var(--deep); }
+.card-trace .trace { width: 100%; height: 56px; display: block; }
 
 .card-name {
   margin: 0;
-  font-size: 1.32rem;
-  font-weight: 700;
-  line-height: 1.14;
-  letter-spacing: -0.022em;
-}
-.card-name em {
-  display: block;
-  margin-top: 3px;
-  font-style: normal;
-  font-family: var(--mono);
-  font-size: var(--xs);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--muted);
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
 }
 
 .card-blurb {
@@ -240,9 +222,9 @@ h1 em {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-top: 4px;
+  margin-top: 2px;
   padding-top: 14px;
-  border-top: 1px solid var(--rule-2);
+  border-top: 2px solid color-mix(in srgb, var(--solid) 22%, transparent);
 }
 .card-repo {
   font-family: var(--mono);
@@ -255,45 +237,48 @@ h1 em {
 .card-go {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-family: var(--mono);
   font-size: var(--xs);
+  font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--pen);
+  color: var(--solid);
   white-space: nowrap;
 }
 .card-go svg { transition: transform 0.18s ease; }
-.card:hover .card-go svg { transform: translateX(3px); }
+.card:hover .card-go svg { transform: translateX(4px); }
 
-/* ---------- pens ---------- */
-.pen-blue   { --pen: var(--pen-blue); }
-.pen-rose   { --pen: var(--pen-rose); }
-.pen-violet { --pen: var(--pen-violet); }
-.pen-green  { --pen: var(--pen-green); }
-.pen-teal   { --pen: var(--pen-teal); }
-.pen-amber  { --pen: var(--pen-amber); }
-.pen-red    { --pen: var(--pen-red); }
+/* the closing card belongs to the set but has no interest of its own */
+.card.end {
+  --solid: var(--ink);
+  --tint: transparent;
+  border: 2px dashed var(--rule);
+}
+.card.end .card-kicker { color: var(--muted); }
 
 /* ---------- footer ---------- */
 footer {
-  padding: 34px 0 56px;
+  padding: 30px 0 56px;
   margin-top: 34px;
-  border-top: 1px solid var(--rule);
+  border-top: 2px solid var(--rule);
 }
-footer a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+footer a { color: var(--ink-2); border-bottom: 2px solid var(--rule); }
 footer a:hover { color: var(--ink); }
 
-@media (max-width: 780px) {
-  .channel { grid-template-columns: 26px minmax(0, 1fr) 96px; gap: 10px; }
-  .ch-trace { display: none; }
-  h1 { letter-spacing: -0.03em; }
+@media (max-width: 820px) {
+  .spectrum { height: 120px; gap: 5px; }
+  .band { padding: 10px; border-radius: 14px; }
+  .band-name { font-size: 0.8rem; }
+  .band-trace { display: none; }
 }
-@media (max-width: 460px) {
+@media (max-width: 560px) {
   .page { padding: 0 16px; }
-  .ch-measure { display: none; }
-  .channel { grid-template-columns: 26px minmax(0, 1fr); }
+  .spectrum { height: auto; flex-wrap: wrap; }
+  .band { flex: 1 1 30%; height: 76px; }
+  .band:hover, .band.lit { flex-grow: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+  .card:hover, .card.lit { transform: none; }
 }

@@ -1,6 +1,9 @@
 /* Every app Kelsey has published to GitHub Pages.
-   `pen` is the recorder-channel colour; `trace` picks the readout drawn
-   for it — each one says something true about what the app does. */
+   `pen` is the colour identity — one saturated hue per interest, used on
+   the spectrum, the card and the trace so each app is recognisable by
+   colour alone before you read a word.
+   `trace` picks the readout drawn for it; each says something true about
+   what the app actually does. */
 export const APPS = [
   {
     id: "cortex",
