@@ -45,19 +45,6 @@ export const APPS = [
     measures: "taxa abundance",
     blurb:
       "Which bacterial taxa run high or low across neuropsychiatric conditions, read off a single diverging scale.",
-    url: "https://kelcamer.github.io/GutBacteria/gut-flora-atlas.html",
-    repo: "GutBacteria",
-    pen: "green",
-    trace: "diverging",
-  },
-  {
-    id: "gut-react",
-    name: "Gut Flora Atlas",
-    variant: "React build",
-    kicker: "Microbiome",
-    measures: "same data",
-    blurb:
-      "The same atlas rebuilt as a React app — the componentised version of the page above.",
     url: "https://kelcamer.github.io/GutBacteria/react-preview/",
     repo: "GutBacteria",
     pen: "green",

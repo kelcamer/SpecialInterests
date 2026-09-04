@@ -173,8 +173,6 @@ h1 em {
   grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
   gap: 1px;
   margin: 40px 0 0;
-  background: var(--rule);
-  border: 1px solid var(--rule);
 }
 
 .card {
@@ -183,6 +181,9 @@ h1 em {
   gap: 10px;
   padding: 22px 22px 20px;
   background: var(--sheet);
+  /* hairlines via shadow, not a grid background — so an incomplete last
+     row ends on paper instead of a block of gutter colour */
+  box-shadow: 0 0 0 1px var(--rule);
   transition: background 0.18s ease;
 }
 .card:hover, .card.lit { background: color-mix(in srgb, var(--pen) 7%, var(--sheet)); }

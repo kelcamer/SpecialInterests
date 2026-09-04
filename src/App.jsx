@@ -15,14 +15,13 @@ export default function App() {
         </div>
 
         <h1>
-          Things I built<br />
-          to look at <em>brains</em>.
+          Special <em>Interests</em>.
         </h1>
 
         <p className="standfirst">
-          Eight web apps, mostly neuroscience, one about drums and one about my
-          mother's opinion of the household. Each runs in the browser with
-          nothing to install. Pick a channel.
+          Mostly neuroscience, one about drums, and one about my mother's opinion
+          of the household. Each one runs in the browser with nothing to install.
+          Pick a channel.
         </p>
       </header>
 
