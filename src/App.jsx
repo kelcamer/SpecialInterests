@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { APPS } from "./data/apps.js";
+import { hueFor } from "./data/synesthesia.js";
 import Spectrum from "./components/Spectrum.jsx";
 import AppCard from "./components/AppCard.jsx";
 
-/* The title carries the palette: one letter per interest, in that
-   interest's own colour, so the page states its logic before it explains it. */
-const PENS = ["blue", "rose", "violet", "green", "teal", "amber", "red"];
-const WORD = "Interests";
+/* The title is set in Kelsey's grapheme colours: the colour belongs to
+   the letter, so every "e" matches every other "e". See data/synesthesia.js. */
+function Synesthetic({ text }) {
+  return text.split("").map((ch, i) => {
+    const hue = hueFor(ch);
+    return hue ? (
+      <span key={i} className={`ltr ltr-${hue}`}>{ch}</span>
+    ) : (
+      <span key={i}>{ch}</span>
+    );
+  });
+}
 
 export default function App() {
   const [active, setActive] = useState(null);
@@ -20,14 +29,7 @@ export default function App() {
         </div>
 
         <h1>
-          Special{" "}
-          <span className="rainbow">
-            {WORD.split("").map((ch, i) => (
-              <span key={i} className={`pen-${PENS[i % PENS.length]}`}>
-                {ch}
-              </span>
-            ))}
-          </span>
+          <Synesthetic text="Special Interests" />
         </h1>
 
         <p className="standfirst">

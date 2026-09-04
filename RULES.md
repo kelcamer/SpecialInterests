@@ -64,14 +64,28 @@ Reuse one if it fits. If the new app measures something none of these
 describe, write a new generator rather than forcing a bad match — the
 trace is supposed to say something true about the app.
 
-## 2. Keep the structure predictable
+## 2. The title is set in grapheme colours
+
+The letters of "Special Interests" are coloured by Kelsey's
+grapheme-colour synesthesia, not by position. A is red, E is blue, and
+the rest follow the associations most commonly reported by English
+synesthetes.
+
+The colour belongs to the **letter**. Every "e" in the title is the same
+blue; both "s"es the same gold. If a letter's colour ever varies by
+position, that's a bug — the consistency is the entire point.
+
+The map lives in [`src/data/synesthesia.js`](src/data/synesthesia.js),
+one line per letter. Change a hue there and nothing else needs touching.
+
+## 3. Keep the structure predictable
 
 The page is loud on purpose, but every card carries the same fields in
 the same order, and nothing moves unless it's pointed at. Motion stays
 behind `prefers-reduced-motion`. Colour is where the energy goes;
 layout stays boring so the page is easy to scan.
 
-## 3. Check the links still work
+## 4. Check the links still work
 
 Apps get renamed and repos get restructured. Before shipping a change
 here, confirm every `url` in `apps.js` still returns 200 — a dead link on
