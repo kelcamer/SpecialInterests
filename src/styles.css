@@ -38,44 +38,39 @@
 .pen-red    { --solid: #C1362A; --deep: #DC3B2A; --tint: #FFE8E3; }
 .pen-lime   { --solid: #4D7C0F; --deep: #63970F; --tint: #EEF8DC; }
 
-/* Grapheme colours for the title. One token per hue; letters map to
-   these in data/synesthesia.js. */
+/* Grapheme colours for the title: the Fisher-Price alphabet magnets,
+   red / orange / yellow / green / blue / purple cycling from A.
+   Letters map to these in data/synesthesia.js.
+
+   The plastic itself is roughly #E23A2E #F5871F #F7D117 #2FA84F #1F6FD0
+   #7B4EA8. Straight onto cream, the yellow and orange come out at about
+   1.8:1 and 2.3:1 — unreadable — so light mode darkens each hue only as
+   far as the title's 3:1 needs (it is 46px+ and bold, so large-text
+   contrast applies). Dark mode below carries the plastic brightness. */
 :root {
-  --syn-red:      #D92D20;
-  --syn-orange:   #DD6B0D;
-  --syn-amber:    #B7791F;
-  --syn-green:    #2B8A3E;
-  --syn-teal:     #0B7285;
-  --syn-blue:     #1858C7;
-  --syn-violet:   #6741D9;
-  --syn-rose:     #C2255C;
-  --syn-brown:    #8D5B34;
-  --syn-graphite: #495965;
+  --syn-red:    #D22B1E;
+  --syn-orange: #E5670B;
+  --syn-yellow: #B8860B;
+  --syn-green:  #2B8A3E;
+  --syn-blue:   #1858C7;
+  --syn-purple: #7A3FD9;
 }
 
-.ltr-red      { color: var(--syn-red); }
-.ltr-orange   { color: var(--syn-orange); }
-.ltr-amber    { color: var(--syn-amber); }
-.ltr-green    { color: var(--syn-green); }
-.ltr-teal     { color: var(--syn-teal); }
-.ltr-blue     { color: var(--syn-blue); }
-.ltr-violet   { color: var(--syn-violet); }
-.ltr-rose     { color: var(--syn-rose); }
-.ltr-brown    { color: var(--syn-brown); }
-.ltr-graphite { color: var(--syn-graphite); }
+.ltr-red    { color: var(--syn-red); }
+.ltr-orange { color: var(--syn-orange); }
+.ltr-yellow { color: var(--syn-yellow); }
+.ltr-green  { color: var(--syn-green); }
+.ltr-blue   { color: var(--syn-blue); }
+.ltr-purple { color: var(--syn-purple); }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --syn-red:      #FF6B5E;
-    --syn-orange:   #FF9F45;
-    --syn-amber:    #F2C14E;
-    --syn-green:    #5FD68B;
-    --syn-teal:     #3BC4D9;
-    --syn-blue:     #6BAAFF;
-    --syn-violet:   #B197FC;
-    --syn-rose:     #FF7BAC;
-    --syn-brown:    #D3A06B;
-    --syn-graphite: #9AA7B2;
+    --syn-red:    #FF6B5E;
+    --syn-orange: #FF9F45;
+    --syn-yellow: #F5D547;
+    --syn-green:  #5FD68B;
+    --syn-blue:   #6BAAFF;
+    --syn-purple: #B197FC;
   }
 }
 

@@ -4,8 +4,10 @@ import { hueFor } from "./data/synesthesia.js";
 import Spectrum from "./components/Spectrum.jsx";
 import AppCard from "./components/AppCard.jsx";
 
-/* The title is set in Kelsey's grapheme colours: the colour belongs to
-   the letter, so every "e" matches every other "e". See data/synesthesia.js. */
+/* The title is set in the Fisher-Price alphabet-magnet colours: red,
+   orange, yellow, green, blue, purple, cycling from A. The colour belongs
+   to the letter, so every "e" matches every other "e". See
+   data/synesthesia.js. */
 function Synesthetic({ text }) {
   return text.split("").map((ch, i) => {
     const hue = hueFor(ch);

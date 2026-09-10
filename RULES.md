@@ -65,19 +65,32 @@ Reuse one if it fits. If the new app measures something none of these
 describe, write a new generator rather than forcing a bad match — the
 trace is supposed to say something true about the app.
 
-## 2. The title is set in grapheme colours
+## 2. The title is set in the Fisher-Price magnet colours
 
-The letters of "Special Interests" are coloured by Kelsey's
-grapheme-colour synesthesia, not by position. A is red, E is blue, and
-the rest follow the associations most commonly reported by English
-synesthetes.
+The letters of "Special Interests" are coloured like the Fisher-Price
+plastic alphabet magnets (the set sold 1971-1990): the rainbow minus
+indigo — red, orange, yellow, green, blue, purple — cycling from A. So A
+is red, E is blue, and G starts the cycle over.
 
-The colour belongs to the **letter**. Every "e" in the title is the same
-blue; both "s"es the same gold. If a letter's colour ever varies by
-position, that's a bug — the consistency is the entire point.
+That set is not decoration. Witthoft, Winawer & Eagleman (2015, PLoS ONE
+10(3):e0118996, [PMID 25734383](https://pubmed.ncbi.nlm.nih.gov/25734383/))
+found more than 6% of American grapheme-colour synesthetes match these
+exact colours, rising to 15% of those born 1975-1980 — the toy taught a
+generation its letter colours. The paper notes G and Y are red in the
+toy, which is what pins the phase of the six-colour cycle.
+
+The colour belongs to the **letter**, not to its position in the title:
+every "e" is the same blue, both "s"es the same red. If a letter's
+colour ever varies by position, that's a bug — the consistency is the
+entire point, and the toy gives it for free because the cycle is defined
+on the alphabet.
 
 The map lives in [`src/data/synesthesia.js`](src/data/synesthesia.js),
 one line per letter. Change a hue there and nothing else needs touching.
+The hexes in `styles.css` are the plastic colours darkened for light
+mode only as far as legibility needs — the raw yellow is about 1.8:1 on
+cream. Keep the title above 3:1 (it is large, bold text); dark mode
+carries the bright plastic values.
 
 ## 3. Keep the structure predictable
 
