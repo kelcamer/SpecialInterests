@@ -87,10 +87,23 @@ on the alphabet.
 
 The map lives in [`src/data/synesthesia.js`](src/data/synesthesia.js),
 one line per letter. Change a hue there and nothing else needs touching.
-The hexes in `styles.css` are the plastic colours darkened for light
-mode only as far as legibility needs — the raw yellow is about 1.8:1 on
-cream. Keep the title above 3:1 (it is large, bold text); dark mode
-carries the bright plastic values.
+
+The hexes in `styles.css` are the plastic colours, adjusted for light
+mode only as far as legibility needs. Orange is darkened to clear the
+3:1 that large bold text needs. Yellow is the exception: darkening it
+that far turns it brown, so it keeps the highlighter brightness and
+`.ltr-yellow` gives it a hairline dark outline instead — the edge
+carries the letterform, not the fill. Copy that pattern for any future
+hue that can't pass on its own rather than darkening it into a
+different colour. Dark mode needs none of it.
+
+The title's face is **Fredoka 700** (`--toy`), the nearest thing on
+Google Fonts to moulded plastic: even stroke weight, round terminals,
+wide apertures. Checked side by side against Baloo 2 800, M PLUS
+Rounded 1c 900 and Nunito 900 at title size. It is the title's alone —
+card names stay on `--display` (Bricolage Grotesque), so the toy
+reference doesn't spread across the page. Tracking sits near zero;
+magnets read as separate tiles and tight display tracking fights that.
 
 ## 3. Keep the structure predictable
 
