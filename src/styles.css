@@ -43,14 +43,20 @@
    Letters map to these in data/synesthesia.js.
 
    The plastic itself is roughly #E23A2E #F5871F #F7D117 #2FA84F #1F6FD0
-   #7B4EA8. Straight onto cream, the yellow and orange come out at about
-   1.8:1 and 2.3:1 — unreadable — so light mode darkens each hue only as
-   far as the title's 3:1 needs (it is 46px+ and bold, so large-text
-   contrast applies). Dark mode below carries the plastic brightness. */
+   #7B4EA8. Straight onto cream, orange comes out at about 2.3:1, so light
+   mode darkens it to clear the 3:1 that large bold text needs (the title
+   is 46px+ and heavy).
+
+   Yellow is the exception. Darkened far enough to pass on its own it stops
+   being yellow, so it keeps the highlighter brightness and gets a dark
+   outline instead: the edge, not the fill, is what carries the letterform.
+   See .ltr-yellow below. Dark mode needs none of this — the plastic hues
+   sit at 7:1 or better on the dark ground. */
 :root {
   --syn-red:    #D22B1E;
   --syn-orange: #E5670B;
-  --syn-yellow: #B8860B;
+  --syn-yellow: #F2DD0D;
+  --syn-yellow-edge: #7A5D00;
   --syn-green:  #2B8A3E;
   --syn-blue:   #1858C7;
   --syn-purple: #7A3FD9;
@@ -58,7 +64,15 @@
 
 .ltr-red    { color: var(--syn-red); }
 .ltr-orange { color: var(--syn-orange); }
-.ltr-yellow { color: var(--syn-yellow); }
+.ltr-yellow {
+  color: var(--syn-yellow);
+  /* Highlighter yellow can't carry itself on cream — about 1.2:1 — so the
+     glyph is outlined. Stroke is centred, which thins a heavy face, so the
+     edge stays hairline-thin relative to the letter: enough to read the
+     shape, not enough to turn it olive. */
+  -webkit-text-stroke: 0.022em var(--syn-yellow-edge);
+  paint-order: stroke fill;
+}
 .ltr-green  { color: var(--syn-green); }
 .ltr-blue   { color: var(--syn-blue); }
 .ltr-purple { color: var(--syn-purple); }
@@ -67,7 +81,8 @@
   :root {
     --syn-red:    #FF6B5E;
     --syn-orange: #FF9F45;
-    --syn-yellow: #F5D547;
+    --syn-yellow: #F7E733;
+    --syn-yellow-edge: transparent;
     --syn-green:  #5FD68B;
     --syn-blue:   #6BAAFF;
     --syn-purple: #B197FC;
