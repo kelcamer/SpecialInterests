@@ -105,6 +105,11 @@ card names stay on `--display` (Bricolage Grotesque), so the toy
 reference doesn't spread across the page. Tracking sits near zero;
 magnets read as separate tiles and tight display tracking fights that.
 
+The title is set in **capitals**, because the magnet set has no
+lowercase. It's a `text-transform`, not retyped text — the markup still
+says "Special Interests", so that's what a screen reader announces and
+what the tab shows. Keep it that way.
+
 ## 3. Keep the structure predictable
 
 The page is loud on purpose, but every card carries the same fields in
