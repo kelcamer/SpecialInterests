@@ -19,6 +19,11 @@
   --rule:    #E8E2D6;
 
   --display: "Bricolage Grotesque", "Archivo", Helvetica, Arial, sans-serif;
+  /* The title only: a fat rounded geometric, the closest thing on Google
+     Fonts to moulded Fisher-Price plastic — even stroke weight, round
+     terminals, wide apertures. Card names stay on --display so the toy
+     reference is the title's alone. */
+  --toy: "Fredoka", "Bricolage Grotesque", "Archivo", Helvetica, Arial, sans-serif;
   --body: "Archivo", Helvetica, Arial, sans-serif;
   --mono: "Martian Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -145,11 +150,13 @@ a { color: inherit; text-decoration: none; }
 
 h1 {
   margin: 34px 0 0;
-  font-family: var(--display);
+  font-family: var(--toy);
   font-size: clamp(2.9rem, 9vw, 6.4rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.035em;
+  font-weight: 700;
+  line-height: 1;
+  /* Magnets sit as separate tiles, so the tight display tracking that
+     suited Bricolage works against the toy read. Near-zero, not negative. */
+  letter-spacing: -0.005em;
   text-wrap: balance;
 }
 
