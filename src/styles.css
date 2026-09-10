@@ -157,6 +157,10 @@ h1 {
   /* Magnets sit as separate tiles, so the tight display tracking that
      suited Bricolage works against the toy read. Near-zero, not negative. */
   letter-spacing: -0.005em;
+  /* The set is capitals only — there are no lowercase magnets. Done as a
+     transform, not by retyping the title, so the text stays "Special
+     Interests" for screen readers and the browser tab. */
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
