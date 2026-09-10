@@ -155,7 +155,44 @@ function tally(w, h) {
   return out;
 }
 
-const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally };
+function channels(w, h) {
+  // Four EEG channels at once: TP9, AF7, AF8, TP10 — one of them with a
+  // bad contact, which is what the contact check is for.
+  const rows = 4;
+  const lane = h / rows;
+  const pts = 96;
+  // Per-row: [alpha-ish frequency, amplitude, phase, noise] — row 2 is the
+  // poor electrode: small signal buried in mains hum.
+  const cfg = [
+    [3.1, 0.62, 0.0, 0.06],
+    [2.4, 0.5, 1.7, 0.05],
+    [3.4, 0.2, 0.6, 0.42],
+    [2.8, 0.58, 3.0, 0.07],
+  ];
+  const wobble = (i) => Math.sin(i * 12.9898) * 43758.5453;
+  return cfg.map(([f, amp, ph, noise], r) => {
+    const mid = lane * (r + 0.5);
+    const span = lane * 0.4;
+    let d = "";
+    for (let i = 0; i <= pts; i++) {
+      const t = i / pts;
+      const n = wobble(i + r * 7) - Math.floor(wobble(i + r * 7)) - 0.5;
+      const y =
+        mid -
+        span * (amp * Math.sin(t * Math.PI * 2 * f + ph) +
+                amp * 0.3 * Math.sin(t * Math.PI * 2 * f * 2.7 + ph) +
+                noise * n * 2);
+      d += `${i ? "L" : "M"}${(t * w).toFixed(1)} ${y.toFixed(1)}`;
+    }
+    return (
+      <path key={r} d={d} fill="none" strokeWidth="1.2"
+        opacity={r === 2 ? 0.45 : 0.95} vectorEffect="non-scaling-stroke"
+        style={{ stroke: "currentColor" }} />
+    );
+  });
+}
+
+const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally, channels };
 
 export default function Trace({ kind, w = 240, h = 44, className = "" }) {
   const draw = KINDS[kind] || steps;

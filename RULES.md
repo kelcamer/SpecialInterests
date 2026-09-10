@@ -39,9 +39,9 @@ Don't invent capabilities it doesn't have.
 
 ### Colours (`pen`)
 
-`blue` · `rose` · `violet` · `green` · `teal` · `amber` · `red`
+`blue` · `rose` · `violet` · `green` · `teal` · `amber` · `red` · `lime`
 
-One hue per app. Reusing a hue is fine once all seven are taken, but give
+One hue per app. Reusing a hue is fine once they are all taken, but give
 neighbouring cards different ones so the grid stays readable. Any new
 colour must clear 4.5:1 contrast against white, because the spectrum
 bands carry white text on `--solid`.
@@ -59,6 +59,7 @@ Defined in [`src/components/Trace.jsx`](src/components/Trace.jsx):
 | `histogram` | bars off a baseline | counts per period |
 | `sixteenths` | a 16-step grid | rhythm |
 | `tally` | five-bar gates | a running score |
+| `channels` | four stacked live traces, one of them noisy | multi-channel recording |
 
 Reuse one if it fits. If the new app measures something none of these
 describe, write a new generator rather than forcing a bad match — the

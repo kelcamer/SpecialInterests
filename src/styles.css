@@ -36,6 +36,7 @@
 .pen-teal   { --solid: #0A7A8C; --deep: #0891A8; --tint: #DDF5FA; }
 .pen-amber  { --solid: #B45309; --deep: #D97706; --tint: #FFF0DA; }
 .pen-red    { --solid: #C1362A; --deep: #DC3B2A; --tint: #FFE8E3; }
+.pen-lime   { --solid: #4D7C0F; --deep: #63970F; --tint: #EEF8DC; }
 
 /* Grapheme colours for the title. One token per hue; letters map to
    these in data/synesthesia.js. */
@@ -94,6 +95,7 @@
   .pen-teal   { --solid: #0FA8C0; --deep: #5FD5E6; --tint: #0C242A; }
   .pen-amber  { --solid: #D98B18; --deep: #FFC569; --tint: #2B1D0B; }
   .pen-red    { --solid: #E0503C; --deep: #FF9585; --tint: #2F1610; }
+  .pen-lime   { --solid: #7CB518; --deep: #B9E86B; --tint: #1B2410; }
 }
 
 * { box-sizing: border-box; }

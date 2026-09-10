@@ -1,7 +1,7 @@
 import Trace from "./Trace.jsx";
 import { APPS } from "../data/apps.js";
 
-/* All seven at once, as colour. Hovering a band widens it — the only
+/* All of them at once, as colour. Hovering a band widens it — the only
    motion on the page, and it is opt-in, reversible and predictable. */
 export default function Spectrum({ active, onHover }) {
   return (

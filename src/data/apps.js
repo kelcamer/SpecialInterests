@@ -89,4 +89,16 @@ export const APPS = [
     pen: "red",
     trace: "tally",
   },
+  {
+    id: "muse",
+    name: "Muse Scope",
+    kicker: "EEG",
+    measures: "4 channels · 256 Hz",
+    blurb:
+      "Connects a Muse S headband over Bluetooth and draws the raw four-channel EEG, with a per-electrode contact check and neurofeedback games driven by your own bands.",
+    url: "https://kelcamer.github.io/MuseScope/",
+    repo: "MuseScope",
+    pen: "lime",
+    trace: "channels",
+  },
 ];
