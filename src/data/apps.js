@@ -69,9 +69,9 @@ export const APPS = [
     id: "drums",
     name: "Groove Library",
     kicker: "Practice tool",
-    measures: "50 grooves",
+    measures: "50 grooves · 29 levels",
     blurb:
-      "A looping player for 50 common drum grooves, with an on-grid count row and tempo you can pull down to learn them.",
+      "A looping player for 50 common drum grooves, with an on-grid count row and tempo you can pull down to learn them. A practice timer logs the time you put into each riff and levels you up toward 10,000 hours.",
     url: "https://kelcamer.github.io/drum_practice/",
     repo: "drum_practice",
     pen: "amber",
