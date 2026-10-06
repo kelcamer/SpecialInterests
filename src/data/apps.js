@@ -113,4 +113,16 @@ export const APPS = [
     pen: "violet",
     trace: "tiles",
   },
+  {
+    id: "wrapped",
+    name: "Kelsey Wrapped",
+    kicker: "Year in review",
+    measures: "489 days · 100 sessions",
+    blurb:
+      "A year of protein shakes, leg curls and spite, read out of a gym log and a food diary and roasted one card at a time.",
+    url: "https://kelcamer.github.io/KelseyWrapped/",
+    repo: "KelseyWrapped",
+    pen: "rose",
+    trace: "histogram",
+  },
 ];
