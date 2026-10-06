@@ -101,4 +101,16 @@ export const APPS = [
     pen: "lime",
     trace: "channels",
   },
+  {
+    id: "magnets",
+    name: "Magnet Words",
+    kicker: "Synesthesia",
+    measures: "26 letters · 6 colours",
+    blurb:
+      "Type anything and every letter takes its Fisher-Price magnet colour. Each word becomes a colour strip you can sort, pin and compare.",
+    url: "https://kelcamer.github.io/MagnetWords/",
+    repo: "MagnetWords",
+    pen: "violet",
+    trace: "tiles",
+  },
 ];

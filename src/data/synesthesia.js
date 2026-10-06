@@ -7,7 +7,7 @@
 
    So A is red, B orange, C yellow, D green, E blue, F purple, and G
    starts the cycle again. Witthoft, Winawer & Eagleman (2015, PLoS ONE
-   10(3):e0118996, PMID 25734383) found >6% of American synesthetes'
+   10(3):e0118996, PMID 25739095) found >6% of American synesthetes'
    letter colours match this exact set — 15% of those born 1975-1980 —
    and note that in the toy G and Y are red, which is what fixes the
    cycle's phase: both sit at position 1 of a six-colour repeat.

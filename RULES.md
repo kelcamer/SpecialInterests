@@ -60,6 +60,7 @@ Defined in [`src/components/Trace.jsx`](src/components/Trace.jsx):
 | `sixteenths` | a 16-step grid | rhythm |
 | `tally` | five-bar gates | a running score |
 | `channels` | four stacked live traces, one of them noisy | multi-channel recording |
+| `tiles` | rows of fixed-width letter blocks | words as colour strips |
 
 Reuse one if it fits. If the new app measures something none of these
 describe, write a new generator rather than forcing a bad match — the
@@ -73,7 +74,7 @@ indigo — red, orange, yellow, green, blue, purple — cycling from A. So A
 is red, E is blue, and G starts the cycle over.
 
 That set is not decoration. Witthoft, Winawer & Eagleman (2015, PLoS ONE
-10(3):e0118996, [PMID 25734383](https://pubmed.ncbi.nlm.nih.gov/25734383/))
+10(3):e0118996, [PMID 25739095](https://pubmed.ncbi.nlm.nih.gov/25739095/))
 found more than 6% of American grapheme-colour synesthetes match these
 exact colours, rising to 15% of those born 1975-1980 — the toy taught a
 generation its letter colours. The paper notes G and Y are red in the

@@ -192,7 +192,22 @@ function channels(w, h) {
   });
 }
 
-const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally, channels };
+function tiles(w, h) {
+  // Words as strips of letter tiles: one fixed-width block per letter, so a
+  // longer word is a longer strip. Opacity stands in for the six hues.
+  const words = [[0, 4, 1, 3, 0, 2], [5, 1, 4, 2], [3, 0, 5, 1, 4, 2, 0], [2, 4, 1]];
+  const lane = h / words.length, bh = lane * 0.7, bw = Math.max(2, w / 9);
+  const shade = [0.95, 0.75, 0.5, 0.85, 0.62, 0.4];
+  return words.flatMap((word, r) =>
+    word.map((c, i) => (
+      <rect key={`${r}-${i}`} x={i * bw * 1.18} y={r * lane + (lane - bh) / 2}
+        width={bw} height={bh} rx={Math.min(2, bw / 4)}
+        fill="currentColor" opacity={shade[c]} />
+    ))
+  );
+}
+
+const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally, channels, tiles };
 
 export default function Trace({ kind, w = 240, h = 44, className = "" }) {
   const draw = KINDS[kind] || steps;
