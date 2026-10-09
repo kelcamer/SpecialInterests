@@ -125,4 +125,16 @@ export const APPS = [
     pen: "rose",
     trace: "histogram",
   },
+  {
+    id: "spyfox",
+    name: "Spy Fox in Dry Cereal",
+    kicker: "Adventure game",
+    measures: "8 locations · 2 mini-games",
+    blurb:
+      "A fan-made, touch-friendly tribute to the 1997 Spy Fox CD-ROM. Stop William the Once-Great from turning the world's milk to dust, with Go Fish, a laser hallway and a cowbell code.",
+    url: "https://kelcamer.github.io/SpyFox/",
+    repo: "SpyFox",
+    pen: "amber",
+    trace: "beams",
+  },
 ];
