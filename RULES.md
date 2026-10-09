@@ -61,6 +61,7 @@ Defined in [`src/components/Trace.jsx`](src/components/Trace.jsx):
 | `tally` | five-bar gates | a running score |
 | `channels` | four stacked live traces, one of them noisy | multi-channel recording |
 | `tiles` | rows of fixed-width letter blocks | words as colour strips |
+| `beams` | ceiling emitters with beams on and off | the Spy Fox laser hallway |
 
 Reuse one if it fits. If the new app measures something none of these
 describe, write a new generator rather than forcing a bad match — the

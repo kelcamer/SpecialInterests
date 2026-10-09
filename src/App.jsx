@@ -35,9 +35,9 @@ export default function App() {
         </h1>
 
         <p className="standfirst">
-          Ten things I got obsessed with and then built. Mostly neuroscience,
-          one about drums, and one about my mother's opinion of the things that
-          her friends do. Everything runs in the browser, nothing to install or sign
+          Eleven things I got obsessed with and then built. Mostly neuroscience,
+          one about drums, one spy game, and one about my mother's opinion of
+          the things that her friends do. Everything runs in the browser, nothing to install or sign
           up for.
         </p>
       </header>

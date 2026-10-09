@@ -207,7 +207,33 @@ function tiles(w, h) {
   );
 }
 
-const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally, channels, tiles };
+function beams(w, h) {
+  // The fortress laser hallway: emitters along the ceiling, beams that
+  // blink on and off, and a floor to dash across when they're off.
+  const on = [1, 0, 1, 1, 0, 1, 0, 1];
+  const step = w / on.length;
+  return (
+    <>
+      <line x1="0" y1={h - 1} x2={w} y2={h - 1} strokeWidth="1" opacity="0.5"
+        vectorEffect="non-scaling-stroke" style={{ stroke: "currentColor" }} />
+      {on.map((lit, i) => {
+        const x = (i + 0.5) * step;
+        return (
+          <g key={i}>
+            <rect x={x - Math.max(1.5, step * 0.18)} y="0" width={Math.max(3, step * 0.36)}
+              height={Math.max(2, h * 0.12)} fill="currentColor" opacity="0.9" />
+            <line x1={x} y1={h * 0.12} x2={x} y2={h - 1}
+              strokeWidth={lit ? 1.8 : 1} strokeDasharray={lit ? undefined : "2 3"}
+              opacity={lit ? 0.95 : 0.3} vectorEffect="non-scaling-stroke"
+              style={{ stroke: "currentColor" }} />
+          </g>
+        );
+      })}
+    </>
+  );
+}
+
+const KINDS = { steps, ticks, contour, diverging, histogram, sixteenths, tally, channels, tiles, beams };
 
 export default function Trace({ kind, w = 240, h = 44, className = "" }) {
   const draw = KINDS[kind] || steps;
